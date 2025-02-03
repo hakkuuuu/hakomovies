@@ -2,8 +2,6 @@
 
 Welcome to Hakomovies, a sleek and modern movie browsing platform powered by TMDB API. Discover trending movies, search for your favorites, and explore top-rated films with an intuitive UI. 🍿
 
-
-
 ## 🚀 Features
 
 - ✅ Browse trending movies 
@@ -19,7 +17,7 @@ Backend: TMDB API
 
 Deployment: Vercel
 
-# 📦 Installation & Setup
+## 📦 Installation & Setup
 
 1️⃣ Clone the repository
 
