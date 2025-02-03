@@ -67,7 +67,7 @@ const App = () => {
     <main className="min-h-screen bg-gray-900">
       <div className="wrapper -mt-10" id="home">
         <nav
-          className={`w-full h-14 fixed px-5 lg:px-8 xl:px-[8%] py-3 flex items-center justify-between z-50 text-white bg-opacity-50 backdrop-blur-lg ${
+          className={`w-full h-18 fixed px-2 lg:px-8 xl:px-[8%] py-5 flex items-center justify-between z-50 text-white bg-opacity-50 bg-gray whitespace-nowrap ${
             isScroll ? 'bg-opacity-30 backdrop-blur-lg shadow-sm' : ''
           }`}
         >
@@ -78,27 +78,27 @@ const App = () => {
             <img src="logo.svg" alt="logo" />
             <span>Hakomovies</span>
           </a>
-          <ul className="hidden md:flex text-2sm items-center gap-6 lg:gap-8 rounded-full px-12 py-3">
+          <ul className="hidden md:flex text-2sm items-center gap-6 lg:gap-8 rounded-full py-3 ">
             <li>
-              <a href="#home">Home</a>
+              <a href="#home" className='hover:text-light-200'>Home</a>
             </li>
             <li>
-              <a href="#movies">All Movies</a>
+              <a href="#movies" className='hover:text-light-200'>All Movies</a>
             </li>
             <li>
-              <a href="#top">Top IMDB</a>
+              <a href="#" className='hover:text-light-200'>Top IMDB</a>
             </li>
+
+            {/* Search Bar */}
+            <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           </ul>
         </nav>
 
         {/* Featured Movies Container */}
         <FeaturedMovies movies={movieList} />
 
-        {/* Search Bar */}
-        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
-        <section className="all-movies mt-8" id="movies">
-          <h2 className="text-2xl text-white mb-4">All Movies</h2>
+        <section className="all-movies mt-2" id="movies">
+          <h2 className="text-3xl font-light text-white mb-6">All Movies</h2>
           {isLoading ? (
             <Spinner />
           ) : errorMessage ? (

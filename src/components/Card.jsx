@@ -9,7 +9,7 @@ const Card = ({ movie }) => {
     : 'https://via.placeholder.com/500x750?text=No+Image';
 
   return (
-    <div className="relative group w-64 rounded-lg overflow-hidden shadow-lg bg-gray-800">
+    <div className="relative group w-64 my-6 rounded-lg overflow-hidden shadow-lg bg-gray-800">
       {/* Movie Poster */}
       <img
         src={posterUrl}
