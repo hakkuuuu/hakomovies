@@ -42,9 +42,9 @@ const FeaturedMovies = ({ movies }) => {
           return (
             <div
               key={movie.id}
-              className="w-screen h-[620px] relative flex-shrink-0"
+              className="w-screen h-[400px] md:h-[620px] relative flex-shrink-0"
             >
-              {/* Backdrop image */}
+              {/* Backdrop image with bottom fade */}
               <img
                 src={backdropUrl}
                 alt={movie.title}
@@ -57,18 +57,21 @@ const FeaturedMovies = ({ movies }) => {
                 }}
               />
               {/* Movie details */}
-              <div className="absolute bottom-50 left-40 text-white w-full max-w-2xl">
+              <div className="absolute bottom-4 md:bottom-50 left-4 md:left-40 text-white w-full max-w-2xl">
                 <div className="flex items-center">
-                  <div className="w-2 h-16 bg-indigo-400 mr-4 z-10"></div>
-                  <h3 className="text-6xl font-bold truncate">
+                  {/* Vertical line */}
+                  <div className="w-2 h-12 md:h-16 bg-indigo-400 mr-2 md:mr-4 z-10"></div>
+                  <h3 className="text-2xl md:text-6xl font-bold truncate">
                     {movie.title || 'Untitled'}
                   </h3>
                 </div>
-                <span className="flex flex-row gap-3 items-center text-lg my-3 font-bold">
-                  <img src="star.svg" alt="star" />
-                  {movie.vote_average}
-                </span>
-                <p className="mt-2 text-lg max-w-fit">
+                <div className="flex flex-row gap-2 items-center text-sm md:text-lg my-2">
+                  <img src="star.svg" alt="star" className="w-4 md:w-6" />
+                  <p className="font-bold text-white pt-1">
+                    {movie.vote_average.toFixed(1)}
+                  </p>
+                </div>
+                <p className="mt-2 text-xs md:text-lg max-w-fit">
                   {movie.overview.length > 150
                     ? `${movie.overview.substring(0, 150)}...`
                     : movie.overview}
@@ -82,11 +85,11 @@ const FeaturedMovies = ({ movies }) => {
       {/* Navigation Arrows */}
       <button
         onClick={handlePrev}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-gray-900 transition"
+        className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-gray-900 transition"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-white"
+          className="h-4 md:h-6 w-4 md:w-6 text-white"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -101,11 +104,11 @@ const FeaturedMovies = ({ movies }) => {
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-gray-900 transition"
+        className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-gray-900 transition"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-white"
+          className="h-4 md:h-6 w-4 md:w-6 text-white"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
