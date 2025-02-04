@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Search from './components/Search';
 import Spinner from './components/Spinner';
 import Card from './components/Card';
 import FeaturedMovies from './components/FeaturedMovies';
+import Nav from './components/Nav';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -15,11 +15,9 @@ const API_OPTIONS = {
 };
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isScroll, setIsScroll] = useState(null);
 
   const fetchMovies = async () => {
     setIsLoading(true);
@@ -46,54 +44,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScroll(true);
-      } else {
-        setIsScroll(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
     fetchMovies();
   }, []);
 
   return (
     <main className="min-h-screen bg-gray-900">
       <div className="wrapper -mt-10" id="home">
-        <nav
-          className={`w-full h-18 fixed px-2 lg:px-8 xl:px-[8%] py-5 flex items-center justify-between z-50 text-white bg-opacity-50 bg-gray whitespace-nowrap ${
-            isScroll ? 'bg-opacity-30 backdrop-blur-lg shadow-sm' : ''
-          }`}
-        >
-          <a
-            href="#home"
-            className="flex flex-row items-center justify-center gap-3"
-          >
-            <img src="logo.svg" alt="logo" />
-            <span>Hakomovies</span>
-          </a>
-          <ul className="hidden md:flex text-2sm items-center gap-6 lg:gap-8 rounded-full py-3 ">
-            <li>
-              <a href="#home" className='hover:text-light-200'>Home</a>
-            </li>
-            <li>
-              <a href="#movies" className='hover:text-light-200'>All Movies</a>
-            </li>
-            <li>
-              <a href="#" className='hover:text-light-200'>Top IMDB</a>
-            </li>
-
-            {/* Search Bar */}
-            <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-          </ul>
-        </nav>
-
+        <Nav />
         {/* Featured Movies Container */}
         <FeaturedMovies movies={movieList} />
 

@@ -1,6 +1,6 @@
 const Spinner = () => {
   return (
-    <div>
+    <div className="h-screen">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
         <circle
           fill="#207BCB"
