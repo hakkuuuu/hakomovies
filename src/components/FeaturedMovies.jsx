@@ -28,7 +28,7 @@ const FeaturedMovies = ({ movies }) => {
   }
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
+    <div className="relative w-full min-h-[50vw] h-[400px] md:h-[620px] overflow-hidden flex items-center justify-center">
       {/* Slider container */}
       <div
         className="flex transition-transform duration-1000 ease-in-out"
@@ -42,7 +42,7 @@ const FeaturedMovies = ({ movies }) => {
           return (
             <div
               key={movie.id}
-              className="w-screen h-[400px] md:h-[620px] relative flex-shrink-0"
+              className="w-screen min-h-[50vw] h-[400px] md:h-[620px] relative flex-shrink-0 flex items-center justify-center"
             >
               {/* Backdrop image with bottom fade */}
               <img
@@ -56,9 +56,9 @@ const FeaturedMovies = ({ movies }) => {
                     'linear-gradient(to bottom, black 70%, transparent 100%)',
                 }}
               />
-              {/* Movie details */}
-              <div className="absolute bottom-4 md:bottom-50 left-4 md:left-40 text-white w-full max-w-2xl">
-                <div className="flex items-center">
+              {/* Movie details centered */}
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-2xl bg-black/60 rounded-lg p-4 md:p-8 text-white flex flex-col items-start">
+                <div className="flex items-center mb-2">
                   {/* Vertical line */}
                   <div className="w-2 h-12 md:h-16 bg-indigo-400 mr-2 md:mr-4 z-10"></div>
                   <h3 className="text-2xl md:text-6xl font-bold truncate">
@@ -86,6 +86,7 @@ const FeaturedMovies = ({ movies }) => {
       <button
         onClick={handlePrev}
         className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-gray-900 transition"
+        aria-label="Previous slide"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +106,7 @@ const FeaturedMovies = ({ movies }) => {
       <button
         onClick={handleNext}
         className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 p-2 rounded-full hover:bg-gray-900 transition"
+        aria-label="Next slide"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -121,6 +123,17 @@ const FeaturedMovies = ({ movies }) => {
           />
         </svg>
       </button>
+      {/* Slide indicators */}
+      <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+        {topMovies.map((_, idx) => (
+          <span
+            key={idx}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              idx === currentIndex ? 'bg-light-200 scale-125' : 'bg-gray-500 opacity-60'
+            }`}
+          ></span>
+        ))}
+      </div>
     </div>
   );
 };

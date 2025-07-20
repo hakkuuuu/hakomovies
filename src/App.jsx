@@ -48,14 +48,15 @@ const App = () => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-900">
-      <div className="wrapper -mt-10" id="home">
-        <Nav />
-        {/* Featured Movies Container */}
-        <FeaturedMovies movies={movieList} />
-
-        <section className="all-movies mt-2" id="movies">
-          <h2 className="text-3xl font-light text-white mb-6">All Movies</h2>
+    <main className="min-h-screen bg-gray-900 hide-scrollbar">
+      <Nav />
+      <FeaturedMovies movies={movieList} />
+      {/* Main content wrapper for centering and max-width */}
+      <div className="wrapper" id="home">
+        <section className="all-movies" id="movies">
+          {(!isLoading && !errorMessage) && (
+            <h2 className="text-3xl font-light text-white mb-6">All Movies</h2>
+          )}
           {isLoading ? (
             <Spinner />
           ) : errorMessage ? (
