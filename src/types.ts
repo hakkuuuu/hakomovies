@@ -12,6 +12,9 @@ export interface Movie {
   overview: string;
   vote_average: number;
   release_date: string;
+  runtime?: number;
+  adult?: boolean;
+  media_type?: 'movie' | 'tv';
 }
 
 export interface MovieDetails extends Movie {

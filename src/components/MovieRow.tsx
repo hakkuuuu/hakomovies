@@ -9,15 +9,12 @@ interface MovieRowProps {
 
 export const MovieRow = ({ title, movies, onMovieClick }: MovieRowProps) => {
   return (
-    <div className="mb-12">
-      {/* Title with gradient line */}
-      <div className="mb-6 flex items-center">
-        <h2 className="text-2xl font-bold text-white">{title}</h2>
-        <div className="ml-4 flex-grow h-[1px] bg-gradient-to-r from-[#ffbade]/50 to-transparent" />
-      </div>
+    <div>
+      {/* Section Title */}
+      <h2 className="text-2xl font-semibold text-white mb-6">{title}</h2>
 
-      {/* Movies Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Movie Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-8">
         {movies.map((movie) => (
           <Card key={movie.id} movie={movie} onClick={onMovieClick} />
         ))}

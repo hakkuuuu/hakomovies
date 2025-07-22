@@ -1,9 +1,7 @@
 import { create } from 'zustand';
 import axios from 'axios';
-import { Movie, MovieDetails } from '../../types';
-
-const TMDB_ACCESS_TOKEN = import.meta.env.VITE_TMDB_API_KEY;
-const BASE_URL = 'https://api.themoviedb.org/3';
+import { Movie, MovieDetails } from '../types';
+import { TMDB_ACCESS_TOKEN, BASE_URL } from '../config';
 
 // Create axios instance with default config
 const tmdbApi = axios.create({

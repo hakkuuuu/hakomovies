@@ -1,39 +1,29 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { SearchBar } from './features/search/SearchBar';
 import { MovieRow } from './components/MovieRow';
-import { MovieModal } from './components/MovieModal';
 import { TopTen } from './components/TopTen';
 import { Nav } from './components/Nav';
-import { useMovieStore } from './features/movies/movieStore';
+import { TrendingMovies } from './features/movies/TrendingMovies';
+import { MovieDetails } from './pages/MovieDetails';
+import { useMovieStore } from './store/movieStore';
 import { Movie } from './types';
 
 // Home page component
 const Home = () => {
+  const navigate = useNavigate();
   const {
     trendingMovies,
     searchResults,
-    selectedMovie,
-    isLoading,
-    error,
-    fetchTrendingMovies,
     searchMovies,
-    fetchMovieDetails,
   } = useMovieStore();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    fetchTrendingMovies();
-  }, [fetchTrendingMovies]);
 
   const handleSearch = async (query: string) => {
     await searchMovies(query);
   };
 
-  const handleMovieClick = async (movie: Movie) => {
-    await fetchMovieDetails(movie.id);
-    setIsModalOpen(true);
+  const handleMovieClick = (movie: Movie) => {
+    navigate(`/movie/${movie.id}`);
   };
 
   return (
@@ -45,33 +35,17 @@ const Home = () => {
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex gap-8">
           {/* Main Content */}
-          <main className="flex-1">
-            {error && (
-              <div className="text-red-500 text-center mb-8">{error}</div>
-            )}
-
-            {isLoading ? (
-              <div className="flex justify-center items-center h-64">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#ffbade]"></div>
-              </div>
+          <div className="flex-1">
+            {searchResults.length > 0 ? (
+              <MovieRow
+                title="Search Results"
+                movies={searchResults}
+                onMovieClick={handleMovieClick}
+              />
             ) : (
-              <>
-                {searchResults.length > 0 ? (
-                  <MovieRow
-                    title="Search Results"
-                    movies={searchResults}
-                    onMovieClick={handleMovieClick}
-                  />
-                ) : (
-                  <MovieRow
-                    title="Trending Movies"
-                    movies={trendingMovies}
-                    onMovieClick={handleMovieClick}
-                  />
-                )}
-              </>
+              <TrendingMovies onMovieClick={handleMovieClick} />
             )}
-          </main>
+          </div>
 
           {/* Top 10 Sidebar */}
           <aside className="hidden xl:block w-[400px]">
@@ -79,13 +53,6 @@ const Home = () => {
           </aside>
         </div>
       </div>
-
-      {selectedMovie && isModalOpen && (
-        <MovieModal
-          movie={selectedMovie}
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
     </div>
   );
 };
@@ -105,6 +72,7 @@ function App() {
           <Route path="/movies" element={<Movies />} />
           <Route path="/popular" element={<Popular />} />
           <Route path="/tv" element={<TvSeries />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
       </div>
     </Router>
