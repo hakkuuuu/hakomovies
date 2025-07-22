@@ -41,7 +41,7 @@ export const Nav = () => {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Left side - Logo and Nav Links */}
           <div className="flex items-center">
@@ -132,7 +132,7 @@ export const Nav = () => {
             : '-translate-y-2 opacity-0 pointer-events-none'
         } md:hidden`}
       >
-        <div className="px-2 pt-2 pb-3 space-y-1 bg-[#201f31]/95 backdrop-blur-md border-t border-white/5">
+        <div className="px-4 sm:px-6 lg:px-8 pt-2 pb-3 space-y-1 bg-[#201f31]/95 backdrop-blur-md border-t border-white/5">
           {navLinks.map((link) => (
             <Link
               key={link.path}
