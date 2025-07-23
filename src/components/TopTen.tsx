@@ -11,7 +11,7 @@ export const TopTen = ({ movies, onMovieClick }: TopTenProps) => {
   const tabs: ('Today' | 'Week' | 'Month')[] = ['Today', 'Week', 'Month'];
 
   return (
-    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 sticky top-24">
+    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 sticky top-24 mt-14">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-white">Top 10</h2>
         <div className="flex gap-2">

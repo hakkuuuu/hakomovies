@@ -1,10 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { SearchBarProps } from '../../types';
 
 export const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+
+  // Debounced search implementation
+  const debouncedSearch = useCallback(
+    (value: string) => {
+      if (value.trim()) {
+        onSearch(value);
+      }
+    },
+    [onSearch]
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      debouncedSearch(query);
+    }, 500); // 500ms delay
+
+    return () => clearTimeout(timer);
+  }, [query, debouncedSearch]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
