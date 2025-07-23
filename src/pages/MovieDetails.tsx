@@ -28,7 +28,7 @@ export const MovieDetails = () => {
   const trailer = selectedMovie.videos?.find(video => video.type === 'Trailer' && video.site === 'YouTube');
 
   return (
-    <div className="min-h-screen pt-24 px-4 sm:px-6 lg:px-8">
+          <div className="min-h-screen pt-24 mb-8">
       {/* Hero Section with Backdrop */}
       <div className="absolute top-0 left-0 right-0 h-[500px] z-0">
         <div className="absolute inset-0 bg-gradient-to-t from-[#201f31] to-transparent" />
@@ -41,7 +41,7 @@ export const MovieDetails = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center space-x-2 text-sm mb-6">
           <Link to="/" className="text-gray-400 hover:text-white">Home</Link>
@@ -74,13 +74,14 @@ export const MovieDetails = () => {
           </div>
 
           {/* Right Side - Content */}
-          <div className="lg:w-3/4">
-            <h1 className="text-4xl font-bold text-white mb-4">
+                    <div className="lg:w-3/4">
+            <h1 className="text-4xl font-bold text-white">
               {selectedMovie.title}
             </h1>
-
             {/* Movie Info Tags */}
             <div className="flex flex-wrap gap-4 mb-6">
+              
+            
               {selectedMovie.adult && (
                 <span className="px-3 py-1 bg-[#ff4757] text-white text-sm font-bold rounded">
                   18+
@@ -160,7 +161,7 @@ export const MovieDetails = () => {
 
                   {/* Genres */}
                   <div>
-                    <h3 className="text-white font-semibold mb-2">Genres</h3>
+                    <h3 className="text-white font-semibold mt-6 mb-2">Genres</h3>
                     <div className="flex flex-wrap gap-2">
                       {selectedMovie.genres.map(genre => (
                         <span
