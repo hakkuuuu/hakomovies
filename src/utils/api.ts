@@ -45,7 +45,7 @@ export const fetchMoviesByGenre = async (genre: Genre): Promise<Movie[]> => {
 export const fetchMovies = async (page: number = 1, genre?: Genre): Promise<MoviesResponse> => {
   let endpoint = '';
   if (genre?.endpoint) {
-    endpoint = `${API_BASE_URL}${genre.endpoint}&page=${page}`;
+    endpoint = `${API_BASE_URL}${genre.endpoint}?page=${page}`;
   } else if (genre?.id) {
     endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc&with_genres=${genre.id}&page=${page}`;
   } else {

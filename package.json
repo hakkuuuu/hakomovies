@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-favicon": "node scripts/generate-favicon.js"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -35,6 +36,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "prop-types": "^15.8.1",
+    "sharp": "^0.34.3",
     "typescript": "^5.8.3",
     "vite": "^6.0.5"
   }
