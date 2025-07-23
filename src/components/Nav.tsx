@@ -48,12 +48,19 @@ export const Nav = () => {
             <div className="flex-shrink-0">
               <Link 
                 to="/" 
-                className="text-white text-xl font-bold relative group overflow-hidden"
+                className="flex items-center group"
               >
-                <span className="relative z-10 group-hover:text-[#ffbade] transition-colors duration-300">
-                  Hako<span className="text-[#ffbade]">Movies</span>
+                <img 
+                  src="/logo.svg" 
+                  alt="Hakomovies Logo" 
+                  className="h-6 w-auto transition-transform duration-300 group-hover:scale-110"
+                />
+                <span className="ml-2 text-white text-xl font-bold relative overflow-hidden">
+                  <span className="relative z-10 group-hover:text-[#ffbade] transition-colors duration-300">
+                    Hako<span className="text-[#ffbade]">Movies</span>
+                  </span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ffbade] group-hover:w-full transition-all duration-300"></span>
                 </span>
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ffbade] group-hover:w-full transition-all duration-300"></span>
               </Link>
             </div>
             
