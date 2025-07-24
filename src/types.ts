@@ -1,20 +1,21 @@
-export interface Genre {
-  name: string;
-  id?: number;
-  endpoint?: string;
-}
-
 export interface Movie {
   id: number;
   title: string;
+  overview: string;
   poster_path: string;
   backdrop_path: string;
-  overview: string;
-  vote_average: number;
   release_date: string;
+  vote_average: number;
+  vote_count: number;
+  popularity: number;
+  adult: boolean;
   runtime?: number;
-  adult?: boolean;
   media_type?: 'movie' | 'tv';
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }
 
 export interface MovieDetails extends Movie {
@@ -35,4 +36,6 @@ export interface SearchBarProps {
 export interface MovieCardProps {
   movie: Movie;
   onClick: (movie: Movie) => void;
-} 
+}
+
+export type TimeWindow = 'day' | 'week' | 'month'; 

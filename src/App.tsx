@@ -18,7 +18,6 @@ const Home = () => {
   const navigate = useNavigate();
   const [hasSearched, setHasSearched] = useState(false);
   const {
-    trendingMovies,
     searchResults,
     searchMovies,
   } = useMovieStore();
@@ -62,7 +61,7 @@ const Home = () => {
 
           {/* Top 10 Sidebar */}
           <aside className="hidden xl:block w-[400px]">
-            <TopTen movies={trendingMovies} onMovieClick={handleMovieClick} />
+            <TopTen onMovieClick={handleMovieClick} />
           </aside>
         </div>
       </div>
