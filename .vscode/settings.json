@@ -1,0 +1,8 @@
+{
+    "postman.settings.dotenv-detection-notification-visibility": false,
+    "typescript.tsserver.maxTsServerMemory": 4096,
+    "problems.excludePatterns": [
+        "**/node_modules/**",
+        "**/vite.config.ts"
+    ]
+}

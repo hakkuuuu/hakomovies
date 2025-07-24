@@ -1,4 +1,4 @@
-import { Movie, Genre } from '../../types';
+import { Movie, Genre, TimeWindow } from '../../types';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -79,6 +79,45 @@ export const fetchTvSeries = async (page: number = 1, genre?: Genre): Promise<AP
       media_type: 'tv'
     }))
   };
+};
+
+export const fetchTrendingMovies = async (timeWindow: TimeWindow = 'day'): Promise<Movie[]> => {
+  if (timeWindow === 'month') {
+    // For monthly trending, we'll use the discover endpoint with popularity sorting
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const fromDate = thirtyDaysAgo.toISOString().split('T')[0];
+    const toDate = new Date().toISOString().split('T')[0];
+
+    const response = await fetch(
+      `${API_BASE_URL}/discover/movie?` +
+      `primary_release_date.gte=${fromDate}&` +
+      `primary_release_date.lte=${toDate}&` +
+      'sort_by=popularity.desc&' +
+      'vote_count.gte=50',
+      API_OPTIONS
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch monthly trending movies');
+    }
+
+    const data = await response.json();
+    return data.results;
+  }
+
+  // For day and week, use the trending endpoint
+  const response = await fetch(
+    `${API_BASE_URL}/trending/movie/${timeWindow}`,
+    API_OPTIONS
+  );
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch trending movies');
+  }
+
+  const data = await response.json();
+  return data.results;
 };
 
 declare global {
