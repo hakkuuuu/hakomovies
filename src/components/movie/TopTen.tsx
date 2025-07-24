@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Movie } from '../types';
+import { Movie } from '../../types';
+import { IMAGE_BASE_URL, POSTER_SIZES } from '../../config';
 
 interface TopTenProps {
   movies: Movie[];
@@ -42,7 +43,7 @@ export const TopTen = ({ movies, onMovieClick }: TopTenProps) => {
               {String(index + 1).padStart(2, '0')}
             </span>
             <img
-              src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+              src={`${IMAGE_BASE_URL}/${POSTER_SIZES.small}${movie.poster_path}`}
               alt={movie.title}
               className="w-16 h-24 object-cover rounded-lg"
             />

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { SearchBarProps } from '../../types';
+import { SearchBarProps } from '../types';
 
 export const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [query, setQuery] = useState('');

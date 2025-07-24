@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import { SearchBar } from './features/search/SearchBar';
-import { MovieRow } from './components/MovieRow';
-import { TopTen } from './components/TopTen';
+import { SearchBar } from './features/SearchBar';
+import { MovieRow } from './components/movie/MovieRow';
+import { TopTen } from './components/movie/TopTen';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
-import { TrendingMovies } from './features/movies/TrendingMovies';
+import { TrendingMovies } from './features/TrendingMovies';
 import { MovieDetails } from './pages/MovieDetails';
 import { Movies } from './pages/Movies';
+import { Popular } from './pages/Popular';
+import { TvSeries } from './pages/TvSeries';
 import { useMovieStore } from './store/movieStore';
 import { Movie } from './types';
 
@@ -67,10 +69,6 @@ const Home = () => {
     </div>
   );
 };
-
-// Placeholder components for other routes
-const Popular = () => <div className="pt-24 px-4 sm:px-6 lg:px-8">Most Popular Page</div>;
-const TvSeries = () => <div className="pt-24 px-4 sm:px-6 lg:px-8">TV Series Page</div>;
 
 function App() {
   return (

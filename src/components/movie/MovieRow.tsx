@@ -1,5 +1,5 @@
-import { Movie } from '../types';
-import { Card } from './Card';
+import { Movie } from '../../types';
+import { Card } from './MovieCard';
 
 interface MovieRowProps {
   title: string;

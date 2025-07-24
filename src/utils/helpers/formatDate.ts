@@ -1,5 +1,11 @@
 // src/utils/formatter.js
 
+interface DateFormatOptions {
+  month?: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow';
+  day?: 'numeric' | '2-digit';
+  year?: 'numeric' | '2-digit';
+}
+
 /**
  * Format a date string into a locale-based readable format.
  *
@@ -8,18 +14,20 @@
  * @param {Object} [options] - Optional formatting options.
  * @returns {string} The formatted date.
  */
-export function formatDate(dateString, locale = 'en-US', options) {
-    const dateObj = new Date(dateString);
+export function formatDate(
+  dateString: string,
+  locale: string = 'en-US',
+  options?: DateFormatOptions
+): string {
+  const dateObj = new Date(dateString);
 
-    // Define default formatting options if none provided.
-    const defaultOptions = {
-        month: 'short', // e.g., "Feb"
-        day: 'numeric', // e.g., "4"
-        year: 'numeric' // e.g., "2025"
-    };
+  const defaultOptions: DateFormatOptions = {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  };
 
-    // Use the provided options if available, otherwise use the default options.
-    const formatOptions = options || defaultOptions;
+  const formatOptions = options || defaultOptions;
 
-    return dateObj.toLocaleDateString(locale, formatOptions);
+  return dateObj.toLocaleDateString(locale, formatOptions);
 }
