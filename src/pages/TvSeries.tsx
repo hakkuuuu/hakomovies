@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Movie, Genre } from '../types';
-import { fetchMovies, GENRE_LIST } from '../utils/api/tmdb';
+import { fetchTvSeries, TV_GENRE_LIST } from '../utils/api/tmdb';
 import { MediaGrid } from '../components/layout/MediaGrid';
 
-export const Movies = () => {
+export const TvSeries = () => {
   const navigate = useNavigate();
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [series, setSeries] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,24 +14,24 @@ export const Movies = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genre | undefined>(undefined);
 
   useEffect(() => {
-    const loadMovies = async () => {
+    const loadSeries = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetchMovies(currentPage, selectedGenre);
-        setMovies(response.results);
+        const response = await fetchTvSeries(currentPage, selectedGenre);
+        setSeries(response.results);
         setTotalPages(Math.min(response.total_pages, 500)); // TMDB API limit
       } catch (err) {
-        setError('Failed to load movies. Please try again later.');
+        setError('Failed to load TV series. Please try again later.');
       } finally {
         setLoading(false);
       }
     };
-    loadMovies();
+    loadSeries();
   }, [currentPage, selectedGenre]);
 
-  const handleMovieClick = (movie: Movie) => {
-    navigate(`/movie/${movie.id}`);
+  const handleSeriesClick = (tv: Movie) => {
+    navigate(`/tv/${tv.id}`);
   };
 
   const handleGenreChange = (genre: Genre | undefined) => {
@@ -46,15 +46,15 @@ export const Movies = () => {
 
   return (
     <MediaGrid
-      title="All Movies"
-      items={movies}
+      title="TV Series"
+      items={series}
       loading={loading}
       error={error}
       currentPage={currentPage}
       totalPages={totalPages}
       selectedGenre={selectedGenre}
-      genres={GENRE_LIST}
-      onItemClick={handleMovieClick}
+      genres={TV_GENRE_LIST}
+      onItemClick={handleSeriesClick}
       onGenreChange={handleGenreChange}
       onPageChange={handlePageChange}
     />

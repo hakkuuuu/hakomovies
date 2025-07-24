@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { MovieRow } from '../../components/MovieRow';
-import { useMovieStore } from '../../store/movieStore';
-import { Movie } from '../../types';
+import { MovieRow } from '../components/movie/MovieRow';
+import { useMovieStore } from '../store/movieStore';
+import { Movie } from '../types';
 
 interface TrendingMoviesProps {
   onMovieClick: (movie: Movie) => void;

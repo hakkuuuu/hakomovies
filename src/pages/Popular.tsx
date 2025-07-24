@@ -4,7 +4,7 @@ import { Movie, Genre } from '../types';
 import { fetchMovies, GENRE_LIST } from '../utils/api/tmdb';
 import { MediaGrid } from '../components/layout/MediaGrid';
 
-export const Movies = () => {
+export const Popular = () => {
   const navigate = useNavigate();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
@@ -22,7 +22,7 @@ export const Movies = () => {
         setMovies(response.results);
         setTotalPages(Math.min(response.total_pages, 500)); // TMDB API limit
       } catch (err) {
-        setError('Failed to load movies. Please try again later.');
+        setError('Failed to load popular movies. Please try again later.');
       } finally {
         setLoading(false);
       }
@@ -46,7 +46,7 @@ export const Movies = () => {
 
   return (
     <MediaGrid
-      title="All Movies"
+      title="Popular Movies"
       items={movies}
       loading={loading}
       error={error}
